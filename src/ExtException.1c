@@ -1,0 +1,84 @@
+Функция ExtException( Знач error = Неопределено, parent = Неопределено )
+	
+	Если error = Неопределено ТОгда
+		error = Новый Структура;
+	КонецЕсли;
+	
+	Если parent = Неопределено Тогда
+		Ошибка = error;
+	Иначе
+			
+		Если parent.Свойство("type") и parent.type <> "Exception" Тогда
+			
+			CurrentStack = Новый Структура;//("traceback", traceback);
+			Если error.Свойство("message") ТОгда
+				CurrentStack.Вставить("message", parent.message);
+				parent.message	= error.message;
+			КонецЕсли;
+			Если error.Свойство("detail") ТОгда
+				CurrentStack.Вставить("detail", parent.detail);
+				parent.detail	= error.detail;
+			КонецЕсли;
+			
+			Если parent.Свойство("stack") и ТипЗнч(parent.stack) = Тип("Массив") Тогда
+				parent.stack.Добавить( CurrentStack);
+			Иначе
+				parent.Вставить("stack", Новый Массив);
+				parent.stack.Добавить( CurrentStack);
+			КонецЕсли;
+			
+			Ошибка = parent;
+		Иначе
+			
+			ВремСтек = Новый Структура("traceback", parent.traceback);
+			
+			Ошибка			= Новый Структура("message, stack, type",,Новый Массив, );
+			Если error.Свойство("type") ТОгда
+				Ошибка.Вставить("type", error.type);
+			Иначе
+				Ошибка.Вставить("type", "ExtException");
+			КонецЕсли;
+			Если error.Свойство("detail") ТОгда
+				Ошибка.Вставить("detail", error.detail);
+			КонецЕсли;
+			Если error.Свойство("message") ТОгда
+				Ошибка.message	= error.message;
+				ВремСтек.Вставить("message", parent.message);
+			Иначе
+				Ошибка.message	= parent.message;
+			КонецЕсли;
+			Ошибка.stack.Добавить(ВремСтек);
+			
+		КонецЕсли;
+	КонецЕсли;
+	
+	Если НЕ Ошибка.Свойство("type") ТОгда
+		Ошибка.Вставить("type", "ExtException");
+	КонецЕсли;
+	
+	Возврат Ошибка;
+	
+КонецФункции
+
+Функция ExtExceptionAnalyse(parent)
+	
+	Попытка
+		//Попробуем из строки получить вложеный объек
+		Возврат	ЗначениеИзСтрокиВнутр(parent.Описание);
+	Исключение
+		
+		Если parent.Причина = Неопределено ТОгда
+			message = parent.Описание;
+		Иначе
+			message	= parent.Причина.Описание;
+		КонецЕсли;
+		
+		Возврат Новый Структура(
+			"message, traceback, type",
+			message,
+			parent.ИмяМодуля +" "+ parent.НомерСтроки,
+			"Exception"
+		);
+	КонецПопытки;
+	
+КонецФункции
