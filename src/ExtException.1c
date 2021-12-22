@@ -20,10 +20,10 @@
 				parent.detail	= error.detail;
 			КонецЕсли;
 			
-			Если parent.Свойство("stack") и ТипЗнч(parent.stack) = Тип("Массив") Тогда
-				parent.stack.Добавить( CurrentStack);
-			Иначе
+			Если Не parent.Свойство("stack") Или ТипЗнч(parent.stack) <> Тип("Массив") Тогда
 				parent.Вставить("stack", Новый Массив);
+			КонецЕсли;
+			Если ЗначениеЗаполнено(CurrentStack) Тогда
 				parent.stack.Добавить( CurrentStack);
 			КонецЕсли;
 			
