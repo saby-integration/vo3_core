@@ -9,5 +9,5 @@
 #Область include_core_src_ExtException
 #КонецОбласти
 
-#Область include_BlocklySabyBlocks_LocalHelper
+#Область include_BlocklySabyBlocks__src_LocalHelper
 #КонецОбласти
