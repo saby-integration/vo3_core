@@ -8,6 +8,3 @@
 
 #Область include_core_src_ExtException
 #КонецОбласти
-
-#Область include_BlocklySabyBlocks_src_LocalHelper
-#КонецОбласти
