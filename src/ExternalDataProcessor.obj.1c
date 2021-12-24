@@ -1,9 +1,9 @@
 
 
-#Область include_BlocklyExecutor_src
+#Область include_BlocklyExecutor_src_Blocks
 #КонецОбласти
 
-#Область include_BlocklySabyBlocks_src
+#Область include_BlocklySabyBlocks_src_Blocks
 #КонецОбласти
 
 #Область include_core_src_ExtException
