@@ -12,11 +12,11 @@
 		Если parent.Свойство("type") и parent.type <> "Exception" Тогда
 			
 			CurrentStack = Новый Структура;//("traceback", traceback);
-			Если error.Свойство("message") ТОгда
+			Если error.Свойство("message") И ЗначениеЗаполнено(error.message) ТОгда
 				CurrentStack.Вставить("message", parent.message);
 				parent.message	= error.message;
 			КонецЕсли;
-			Если error.Свойство("detail") ТОгда
+			Если error.Свойство("detail") И ЗначениеЗаполнено(error.detail)  ТОгда
 				CurrentStack.Вставить("detail", parent.detail);
 				parent.detail	= error.detail;
 			КонецЕсли;
@@ -39,10 +39,10 @@
 			Иначе
 				Ошибка.Вставить("type", "ExtException");
 			КонецЕсли;
-			Если error.Свойство("detail") ТОгда
+			Если error.Свойство("detail") И ЗначениеЗаполнено(error.detail)  ТОгда
 				Ошибка.Вставить("detail", error.detail);
 			КонецЕсли;
-			Если error.Свойство("message") ТОгда
+			Если error.Свойство("message") И ЗначениеЗаполнено(error.message)  ТОгда
 				Ошибка.message	= error.message;
 				ВремСтек.Вставить("message", parent.message);
 			Иначе
@@ -85,7 +85,7 @@
 КонецФункции
 
 //Функция проброски ExtException с разбором переданного
-Функция NewExtException(ИнфОбОшибке, НовоеСообщение="Неизвестная ошибка", ДобавитьКДетейл="", dump=Неопределено)
+Функция NewExtExceptionСтруктура(ИнфОбОшибке, НовоеСообщение=Неопределено, ДобавитьКДетейл=Неопределено, dump=Неопределено)
 	Ошибка = ExtExceptionAnalyse(ИнфОбОшибке);
 	Если Ошибка.type = "Exception" Тогда
 		Если dump<>Неопределено Тогда
@@ -97,6 +97,11 @@
 	Иначе
 		ОшибкаСтруктура = ExtException(, Ошибка);
 	КонецЕсли;
+	Возврат ОшибкаСтруктура;
+КонецФункции
+
+Функция NewExtException(ИнфОбОшибке, НовоеСообщение=Неопределено, ДобавитьКДетейл=Неопределено, dump=Неопределено)
+	ОшибкаСтруктура = NewExtExceptionСтруктура(ИнфОбОшибке, НовоеСообщение="Неизвестная ошибка", ДобавитьКДетейл="", dump=Неопределено);
 	Возврат ЗначениеВСтрокуВнутр(ОшибкаСтруктура);
 КонецФункции
 
