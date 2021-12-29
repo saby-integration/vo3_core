@@ -8,7 +8,7 @@
 	Если parent = Неопределено Тогда
 		Ошибка = error;
 	Иначе
-			
+		
 		Если parent.Свойство("type") и parent.type <> "Exception" Тогда
 			
 			CurrentStack = Новый Структура;//("traceback", traceback);
@@ -75,10 +75,10 @@
 		КонецЕсли;
 		
 		Возврат Новый Структура(
-			"message, traceback, type",
-			message,
-			parent.ИмяМодуля +" "+ parent.НомерСтроки,
-			"Exception"
+		"message, traceback, type",
+		message,
+		parent.ИмяМодуля +" "+ parent.НомерСтроки,
+		"Exception"
 		);
 	КонецПопытки;
 	
