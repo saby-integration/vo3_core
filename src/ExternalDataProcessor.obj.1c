@@ -8,3 +8,6 @@
 
 #Область include_core_src_ExtException
 #КонецОбласти
+
+//Шаблон, вызвать исключение
+//ВызватьИсключение ЗначениеВСтрокуВнутр( ExtException(  Новый Структура("message", "Ошибки в блоке local_helper_read_document"), ) );		
