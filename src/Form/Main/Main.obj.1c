@@ -1,9 +1,0 @@
-
-#Область include_core_src_Form_Main_Helper
-#КонецОбласти
-
-#Область include_core_src_Form_Main_FormEventsHandler
-#КонецОбласти
-
-#Область include_core_src_Form_Main_BrowserEventsHandler
-#КонецОбласти
