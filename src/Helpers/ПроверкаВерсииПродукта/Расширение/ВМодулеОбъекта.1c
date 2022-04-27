@@ -6,7 +6,7 @@
 		prefix = Лев(api_url, Найти(api_url, "."));
 		prefix = Лев(prefix, СтрДлина(prefix) - 3);
 	КонецЕсли;
-	Возврат prefix + "update0.sbis.ru/" + product_name + "/";
+	Возврат prefix + "update.sbis.ru/" + product_name + "/";
 КонецФункции
 
 Функция ПроверкаВерсии_ПолучитьИнформациюОВерсии(Принудительно=Ложь) Экспорт
