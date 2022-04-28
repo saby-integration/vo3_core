@@ -83,3 +83,41 @@
 	Возврат error.message +" " + get_prop(error, "detail", "");
 КонецФункции
 
+Процедура ОтправитьЛогиВСервисСтатистики(context_params = Неопределено, action_name, action_param, КоличествоОбъектов = 0, ЭтоОшибка = Ложь) Экспорт
+	Если context_params = Неопределено Тогда
+		context_params = Saby_Core.НастройкиПодключенияПрочитать();
+	КонецЕсли;
+	module			= "saby_ce_kedo";
+	
+	Попытка
+         ПараметрыМетода = Новый Структура("stat", 
+         Новый Структура("service, module, subsystem, action_name, action_param, connection_id, count",
+            context_params.service,
+            module,
+            context_params.subsystem,
+            action_name,
+            action_param,
+            context_params.ConnectionId,
+            КоличествоОбъектов
+        	)
+        );
+       	МетодСервисаСтатистики = "API3.WriteError";
+        Если ЭтоОшибка Тогда
+       		МетодСервисаСтатистики = "API3.WriteStat";
+        КонецЕсли;
+       	 
+		РеНейм = local_helper_exec_method(
+		context_params,
+		Новый Структура("url, method, params, auto_auth",
+			context_params.api_url+"/integration_config/service/",
+			МетодСервисаСтатистики,
+			ПараметрыМетода,
+			Ложь,
+			)
+		);	
+	Исключение
+		ИнфОбОшибке = ИнформацияОбОшибке();
+	КонецПопытки;
+         
+КонецПроцедуры
+
