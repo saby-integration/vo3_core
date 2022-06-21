@@ -24,7 +24,7 @@
 	
 	ИмяФайлаИНомерВерсии = ПроверкаВерсии_ПолучитьИмяФайлаИНомерТекущейВерсии();
 	Попытка
-		version_info = local_helper_read_version_info(api_url, ПолучитьНазваниеПродукта());
+		version_info = local_helper_read_version_info(api_url, ПолучитьНазваниеПродукта(), context_param);
 	Исключение
 		ИнфОбОшибке = ИнформацияОбОшибке();
 		Ошибка = ExtExceptionAnalyse(ИнфОбОшибке);
