@@ -84,7 +84,7 @@
 КонецФункции
 
 
-Процедура ExtExceptionAddRecordInToJournal(ExceptionСтруктура) Экспорт
+Процедура ExtExceptionAddRecordToJournal(ExceptionСтруктура) Экспорт
 	ЗаписьXML = Новый ЗаписьXML;
 	ЗаписьXML.УстановитьСтроку();
 	СериализаторXDTO.ЗаписатьXML(ЗаписьXML, ExceptionСтруктура.detail, НазначениеТипаXML.Явное);
