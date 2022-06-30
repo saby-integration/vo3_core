@@ -83,7 +83,7 @@
 	Возврат error.message +" " + get_prop(error, "detail", "");
 КонецФункции
 
-Процедура ExtExceptionAddRecordToJournal(Знач ExceptionСтруктура) Экспорт
+Процедура ExtExceptionToJournal(Знач ExceptionСтруктура) Экспорт
 	ИмяСобытия = "СБИС Ошибка " + ExceptionСтруктура.message;
 	
 	ЗаписьXML = Новый ЗаписьXML;
