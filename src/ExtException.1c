@@ -85,13 +85,11 @@
 
 Процедура ExtExceptionAddRecordToJournal(Знач ExceptionСтруктура) Экспорт
 	ИмяСобытия = "СБИС Ошибка " + ExceptionСтруктура.message;
-	ExceptionСтруктура.Удалить("message");
 	
 	ЗаписьXML = Новый ЗаписьXML;
 	ЗаписьXML.УстановитьСтроку();
 	СериализаторXDTO.ЗаписатьXML(ЗаписьXML, ExceptionСтруктура.detail, НазначениеТипаXML.Явное);
 	Комментарий = ЗаписьXML.Закрыть();
-	ExceptionСтруктура.Удалить("detail");
 	
 	ЗаписьXML.УстановитьСтроку();
 	СериализаторXDTO.ЗаписатьXML(ЗаписьXML, ExceptionСтруктура, НазначениеТипаXML.Явное);
