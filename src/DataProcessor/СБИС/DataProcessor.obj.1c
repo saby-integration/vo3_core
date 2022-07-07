@@ -11,6 +11,8 @@
 #Область include_core_src_ДлительныеОперации
 #КонецОбласти
 
+#Область include_core_ПриНачалеРаботы
+#КонецОбласти
 
 #Область include_BlocklyExecutor_src_Executor
 #КонецОбласти
