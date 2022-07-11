@@ -114,7 +114,7 @@
 	Исключение
 		ИнфОбОшибке = ИнформацияОбОшибке();
 		ОшибкаСтруктура = ExtExceptionAnalyse(ИнфОбОшибке);
-		Saby_Core.ExtExceptionAddRecordInToJournal(ОшибкаСтруктура);
+		Saby_Core.ExtExceptionToJournal(ОшибкаСтруктура);
 
 		Если ТипЗнч(ОшибкаСтруктура.detail) = Тип("Соответствие") и ТипЗнч(ОшибкаСтруктура.detail["error"]) = Тип("Соответствие") Тогда
 			ДанныеОшибки = ОшибкаСтруктура.detail["error"]["data"];
