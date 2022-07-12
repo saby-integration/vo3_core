@@ -60,7 +60,7 @@
 	Если ИмяДействия = "ADDON_OPENFORM" Тогда
 		Возврат API_ADDON_OPENFORM(ПараметрыВызова);
 	ИначеЕсли ИмяДействия = "ADDON_SETCONNECTIONINFO" Тогда
-		Результат = API_ADDON_SETCONNECTIONINFO(ПараметрыВызова);
+		Возврат API_ADDON_SETCONNECTIONINFO(ПараметрыВызова);
 	Иначе
 		ВызватьИсключение NewExtExceptionСтрока(,"Неизвестная команда", ИмяДействия);
 	КонецЕсли;
