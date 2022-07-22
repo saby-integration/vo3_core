@@ -607,3 +607,9 @@
 	КонецЕсли;
 	Возврат Тикет;
 КонецФункции
+
+&НаСервере
+Функция local_helper_init_connection(context_params, connection_info) Экспорт
+	Возврат local_helper_integration_api(context_params, "API3.InitConnection", Новый Структура("Params,ExtSysSettings", connection_info, Новый Структура("Format","Dom1C")));
+КонецФункции
+
