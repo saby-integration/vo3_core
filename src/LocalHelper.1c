@@ -608,8 +608,54 @@
 	Возврат Тикет;
 КонецФункции
 
-&НаСервере
 Функция local_helper_init_connection(context_params, connection_info) Экспорт
 	Возврат local_helper_integration_api(context_params, "API3.InitConnection", Новый Структура("Params,ExtSysSettings", connection_info, Новый Структура("Format","Dom1C")));
+КонецФункции
+
+Функция local_helper_get_accoutslist(context_params) Экспорт
+	Если context_params = Неопределено Тогда
+		context_params = НастройкиПодключенияПрочитать();
+	КонецЕсли;
+	Попытка
+		result = local_helper_exec_method(
+			context_params,
+			Новый Структура("url, method, params, auto_auth",
+				context_params.api_url+"/auth/service/",
+				"СБИС.СписокАккаунтов",
+				Новый Структура,
+				Ложь,
+			)
+		);
+	Исключение
+		ИнфОбОшибке = ИнформацияОбОшибке();
+		ВызватьИсключение NewExtExceptionСтрока(ИнфОбОшибке,,,,,"Unauthorized" );
+	КонецПопытки;
+	Возврат get_prop(get_prop(result, "result"), "Список", Новый Массив);
+КонецФункции
+
+Функция local_helper_switch_account(context_params, account_id) Экспорт
+	Если context_params = Неопределено Тогда
+		context_params = НастройкиПодключенияПрочитать();
+	КонецЕсли;
+	Попытка
+		result = local_helper_exec_method(
+			context_params,
+			Новый Структура("url, method, params, auto_auth",
+				context_params.api_url+"/auth/service/",
+				"СБИС.ПереключитьАккаунт",
+				Новый Структура("Параметр", Новый Структура("НомерАккаунта", account_id)),
+				Ложь,
+			)
+		);
+	Исключение
+		ИнфОбОшибке = ИнформацияОбОшибке();
+		ВызватьИсключение NewExtExceptionСтрока(ИнфОбОшибке,,,,,"Unauthorized" );
+	КонецПопытки;
+	session = result.Получить("result");
+	context_params.Вставить("session", session );
+	context_params.Вставить("session_begin", ТекущаяДата());
+	context_params.Вставить("need_ticket", Истина);
+	НастройкиПодключенияЗаписать(context_params);
+	Возврат session;
 КонецФункции
 
