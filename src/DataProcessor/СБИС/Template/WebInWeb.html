@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="content-type" content="text/html;charset=utf-8"></meta><meta http-equiv="X-UA-Compatible" content="IE=EDGE"></meta><script>
+    function listener(event) {
+        if (!event.data) {
+            return
+        }
+        let connector = document.domConnector;
+        switch (event.data.type) {
+            case 'SabyReady':
+                connector.log('on SabyReady ');
+                connector.addonReady = true;
+                break;
+            case 'SabyRequest':
+                let action = event.data.action;
+                connector.log('on SabyRequest ' + action);
+                call(event.data.action, event.data.data);
+                break;
+            default:
+                connector.log('on Message ' + JSON.stringify(event.data, null, '  '));
+        }
+    }
+
+    function checkReady() {
+        let connector = document.domConnector;
+        if (!connector.addonReady) {
+            connector.log('check addon ready');
+            sendMessage('SabyReady', {});
+        }
+        setTimeout(checkReady, 100);
+    }
+
+    function initConnector() {
+        const sendDomElem = document.createElement('div');
+        document.domConnector = {
+            sendDomElem,
+            addonReady: false,
+            addonWindow: window.open("https://test-online.sbis.ru/integration_config/1C?test=1&debug=1&timeout=1", '_blank'),
+            request: {},
+            resolve: function (result) {
+                let connector = document.domConnector;
+                let request = document.domConnector.request;
+                if (!request) {
+                    alert('Поступил ответ без запроса !')
+                    return;
+                }
+                connector.log(`resolve ${request.action}`, result);
+                sendMessage('SabyResponse', result);
+                connector.request = {};
+                connector.lock = false
+            },
+            reject: function (result) {
+                let connector = document.domConnector;
+                let request = document.domConnector.request;
+                if (!request) {
+                    alert('Поступил ответ без запроса !')
+                    return;
+                }
+                connector.log(`reject ${request.action}`, result);
+                sendMessage('SabyError', result);
+                connector.request = {};
+                connector.lock = false
+            },
+            log: function (action, data) {
+                console.log(action, data);
+            }
+        };
+        sendDomElem.setAttribute('style', 'display: none');
+        sendDomElem.setAttribute('id', 'toExtSys');
+        document.querySelector('body').appendChild(sendDomElem);
+        window.addEventListener("message", listener);
+        document.domConnector.log('wait addon');
+        checkReady();
+        document.domConnector.log('addon ready');
+    }
+
+    async function call(action, data, timeout = undefined) {
+        try {
+            let connector = document.domConnector;
+            if (!connector) {
+                connector = initConnector();
+            }
+            timeout = data && data.timeout ? data.timeout : timeout;
+            timeout = timeout === undefined ? connector.timeout : timeout;
+            connector.log(`call ${action}`, `timeout: ${timeout}`);
+            connector.lastQueryId++;
+            connector.request = {
+                action: action,
+                data: data,
+            }
+            connector.log(`send ${connector.request.action}`, connector.request.data);
+            connector.beginTime = Date.now();
+            connector.lock = true;
+            connector.sendDomElem.setAttribute('action', connector.request.action);
+            connector.sendDomElem.textContext = connector.request.data
+            connector.sendDomElem.click();
+
+            return callPromise;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    function sendMessage(type, data) {
+        let connector = document.domConnector;
+        connector.addonWindow.postMessage({data, type}, '*');
+    }
+
+    window.onload = function () {
+        initConnector();
+    }
+
+</script></head><body>
+<button onclick="openTarget()">Открыть Addon на новой вкладке</button>
+<button onclick="targetReady = false;checkReady();">Переподключить Addon (если обновили страницу Addon)</button>
+<div id="toExtSys" style="display: none"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div></body></html>
