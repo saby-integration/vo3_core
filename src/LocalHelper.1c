@@ -212,6 +212,13 @@
 	);
 КонецФункции
 
+Функция local_helper_extsyncobj_get_obj_for_execute(context, extsyncdoc_uuid, extra_fields, limit)	
+	Возврат local_helper_integration_api(context, "ExtSyncObj.GetObjectsForExecute", 
+	Новый Структура("Filter, ExtraFields", 
+	Новый Структура("SyncDocId, Limit", extsyncdoc_uuid, limit), extra_fields)
+	);
+КонецФункции
+
 Функция local_helper_extsyncdoc_read(context, extsyncdoc_uuid)
 	Возврат local_helper_integration_api(context, "API3.ExtSyncDocRead", Новый Структура("param", Новый Структура("SyncDocId", extsyncdoc_uuid)));
 КонецФункции
@@ -220,8 +227,8 @@
 	response = local_helper_integration_api(context, "MappingObject.FindAndUpdate", 
 	Новый Структура("Filter, Data", _filter, _data)
 	);
-	Если response.Свойство("result") Тогда
-		Возврат response.result;
+	Если ЗначениеЗаполнено(response) Тогда
+		Возврат response;
 	Иначе
 		//ВызватьИсключение СокрЛП(response);
 		ИнфОбОшибке = ИнформацияОбОшибке();
