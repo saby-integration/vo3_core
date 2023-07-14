@@ -1,0 +1,17 @@
+
+Функция ПолучитьПодключение(context_param) Экспорт
+	system_info = API_ADDON_READSYSTEMINFO(Неопределено);
+	connection_info = local_helper_init_connection(context_param, system_info);
+	
+	ЭтоНовоеПодключение = Ложь;
+	ConnectionStateEvents = get_prop(connection_info, "ConnectionStateEvents", Новый Массив);
+	Если ConnectionStateEvents.Найти("NewSystem") <> Неопределено Тогда
+		ПриСозданииНовогоПодключения(connection_info);
+	КонецЕсли;
+	
+	context_param.Вставить("ConnectionId", connection_info["ConnectionId"]);
+	context_param.Вставить("DemoLicense", connection_info["DemoLicense"]);
+	
+	Возврат connection_info;
+КонецФункции
+
