@@ -1,0 +1,10 @@
+
+#Область include_core_base_Helpers_РаботаСоСвойствамиСтруктуры
+#КонецОбласти
+
+#Область include_core_base_ExtException
+#КонецОбласти
+
+#Область include_core_base_Helpers_ФормаСбросКеша
+#КонецОбласти
+
