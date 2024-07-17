@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><meta http-equiv="content-type" content="text/html;charset=utf-8"></meta><meta http-equiv="X-UA-Compatible" content="IE=EDGE"></meta><script>
+    /**
+     * Массив запросов к ис, которые ждут обработки
+     */
+    var requests = [];
+    var prefix = 'Addon';
+    let worker;
+
+    function listener(event) {
+      if (!event.data) {
+        return
+      }
+      let action = event.data.action;
+      let connector = document.domConnector;
+      switch (event.data.type) {
+        case `${prefix}Ready`:
+          connector.log(`on ${prefix}Ready `);
+          connector.addonReady = true;
+          break;
+        case `${prefix}Request`:
+          connector.log(`on ${prefix}Request ` + action);
+          call(event.data.action, event.data.data);
+          break;
+        case `${prefix}Response`:
+          connector.log(`on ${prefix}Response ` + action);
+          call(`${prefix}Response`, event.data.data);
+          break;
+        case `${prefix}ActionResponse`:
+          call(`${prefix}ActionResponse`, event.data.data);
+          break;
+        default:
+          connector.log('on Message ' + JSON.stringify(event.data, null, '  '));
+      }
+    }
+
+    function checkReady() {
+        let connector = document.domConnector;
+        worker.onmessage = function(event) {
+            if (event.data === 'intervalTick') {
+                connector.log('check addon ready');
+                sendMessage(`${prefix}Ready`, {});
+            }
+        };
+        worker.postMessage('startInterval');
+    }
+
+    function openTarget() {
+      let connector = document.domConnector;
+      connector.addonReady = false;
+      connector.addonWindow = window.open("%URL%", '_blank');
+      connector.addonWindow.blur();
+      connector.addonWindow.focus();
+    }
+
+    function initConnector() {
+      console.log("initconnector begin");
+      const sendDomElem = document.createElement('div');
+      document.domConnector = {
+        sendDomElem,
+        addonReady: false,
+        addonWindow: null,
+        request: {},
+        resolve: function (result) {
+          let connector = document.domConnector;
+          let request = document.domConnector.request;
+          if (!request) {
+            alert('Поступил ответ без запроса !')
+            return;
+          }
+          connector.log(`resolve ${request.action}`, result);
+          sendMessage(`${prefix}Response`, result);
+          connector.request = {};
+          connector.lock = false;
+          callRequestFromQueue();
+        },
+        reject: function (result) {
+          let connector = document.domConnector;
+          let request = document.domConnector.request;
+          if (!request) {
+            alert('Поступил ответ без запроса !')
+            return;
+          }
+          connector.log(`reject ${request.action}`, result);
+          sendMessage(`${prefix}Error`, result);
+          connector.request = {};
+          connector.lock = false;
+          callRequestFromQueue();
+        },
+        sendRequest: function (uid, action, params) {
+            sendMessage(`${prefix}ActionRequest`, {uid, action, params})
+
+        },
+        log: function (action, data) {
+          console.log(action, data);
+        },
+        lastQueryId: 0,
+        delay: 0,
+        attempt: 0,
+        beginTime: Date.now(),
+        timeout: 30
+      };
+      sendDomElem.setAttribute('style', 'display: none');
+      sendDomElem.setAttribute('id', 'toExtSys');
+      document.querySelector('body').appendChild(sendDomElem);
+      window.addEventListener("message", listener);
+      openTarget();
+      document.domConnector.log('wait addon');
+      checkReady();
+      document.domConnector.log('addon ready');
+      console.log("initconnector end");
+    }
+
+    /**
+     * Добавление нового запроса в очередь
+     */
+    async function putRequestQueue(action, data, timeout) {
+      return new Promise((resolve, reject) => {
+        requests.push({
+          action: call.bind(null, action, data, timeout),
+          resolve,
+          reject
+        });
+      })
+    }
+
+    /**
+     * Вызов запроса из очереди
+     */
+    async function callRequestFromQueue() {
+      // Достаём первый запрос в очереди
+      const item = requests.shift();
+      // Если запроса нет, то выходим
+      if (!item) {
+        return null;
+      }
+      try {
+        // вызываем call
+        const payload = await item.action();
+        item.resolve(payload);
+      } catch (e) {
+        item.reject(e);
+      }
+      return null;
+    }
+
+    async function call(action, data, timeout) {
+      try {
+        let connector = document.domConnector;
+        if (!connector) {
+          connector = initConnector();
+        }
+        if (connector.lock) {
+          return putRequestQueue(action, data, timeout);
+        }
+        timeout = data && data.timeout ? data.timeout : timeout;
+        timeout = timeout === undefined ? connector.timeout : timeout;
+        connector.log(`call ${action}`, `timeout: ${timeout}`);
+        connector.lastQueryId++;
+        connector.request = {
+          action: action,
+          data: data,
+          queryId: connector.lastQueryId,
+          attempt: 0
+        };
+        _call(action, timeout);
+      } catch (err) {
+        connector.error(err);
+      }
+    }
+
+    function _call(action, timeout) {
+      const connector = document.domConnector;
+      const request = document.domConnector.request;
+      connector.lock = true;
+      const self = this;
+      const _innerCall = (queryId, timeout) => {
+        connector.beginTime = Date.now();
+        self._send(connector, request);
+        if (timeout) {
+          setTimeout((queryId, timeout) => {
+                // запрос прошел все хорошо ничего не надо
+                if (connector.lastQueryId !== queryId || !connector.lock) {
+                  return;
+                }
+                connector.log(`check timeout ${request.action}`);
+                request.attempt += 1;
+                if (request.attempt > 0) {
+                  connector.log(`timeout ${request.action}`);
+                  connector.request = {};
+                  connector.lock = false;
+                  return;
+                }
+                self._call(method, timeout);
+              }, timeout * 1000, queryId, timeout
+          );
+        }
+      };
+      if (connector.delay) {
+        // иначе Addon2-SAP не успевает, подозреваю что цифра здесь может быть любая.
+        // Главное управление передать. пока не понятно
+        setTimeout(_innerCall, Math.max(connector.delay - Date.now() - connector.beginTime, 10),
+            connector.lastQueryId, timeout);
+      } else {
+        _innerCall(connector.lastQueryId, timeout);
+      }
+    }
+
+    function _send(connector, request) {
+      try {
+        connector.log(`send ${connector.request.action}`, request.data);
+        connector.sendDomElem.setAttribute('action', connector.request.action);
+        connector.sendDomElem.textContext = request.data
+        connector.sendDomElem.click();
+      } catch(err) {
+        connector.log(err)
+      }
+    }
+
+    function sendMessage(type, data) {
+      let connector = document.domConnector;
+      connector.addonWindow.postMessage({data, type, parentHost: window.location.host}, '*');
+    }
+
+    /**
+     * Из за ограничений браузера пришелось вместо использования стандартного setTimeout использовать worker
+     * проблема в том, что если вкладка с транспортной страницей некоторое время не активна, то все setTimeout/setInterval зависают,
+     * до следующего активности в данной вкладке
+     * Всё что делает воркер, он в фоне запускает setInterval (который не зависает, при отсутствии активности)
+     * и на каждый тик данного setInterval в основной процесс кидает команду intervalTick,
+     * чтобы запустить setInterval в воркере, неоходимо в воркер отправить команду startInterval
+     */
+      function initWorker() {
+        const workerScript = `
+            self.onmessage = function(event) {
+                let intervalId;
+                if (event.data === 'startInterval') {
+                    intervalId = startInterval(1000);
+                    return;
+                }
+                function startInterval(ms) {
+                    return setInterval(() => {
+                        self.postMessage('intervalTick');
+                    }, ms);
+                }
+            };
+        `;
+        const workerBlob = new Blob([workerScript], { type: 'application/javascript' });
+        const workerUrl = URL.createObjectURL(workerBlob);
+        worker = new Worker(workerUrl);
+    }
+
+    window.onload = function () {
+      initWorker();
+      initConnector();
+    }
+
+  </script></head><body>
+<button onclick="openTarget()">Открыть страницу на новой вкладке</button>
+<button onclick="checkReady();">Переподключить страницу (если обновили)</button>
+<div>К сожалению 1С не позволяет открывать ссылку на сторонний ресурс в своём окне.
+  Поэтому мы вынуждены открывать интерфейс страницы в соседней вкладке. Тем не менее вкладка страницы связана с вкладкой
+  1С и весь функционал обработки работает в полном объеме. Единственным неудобством
+  такого подхода является необходимость переключаться между вкладками, при просмотре
+  документа 1С.
+</div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div>
+<div style="display: none" id="toExtSys"></div></body></html>
