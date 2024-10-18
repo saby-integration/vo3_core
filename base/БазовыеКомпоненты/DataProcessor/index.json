@@ -1,0 +1,142 @@
+{
+  "DataProcessor": {
+    "SABY": {
+      "DataProcessor.json": "core\\base\\БазовыеКомпоненты\\DataProcessor\\DataProcessor.json",
+      "DataProcessor.obj.bsl": "core\\base\\БазовыеКомпоненты\\DataProcessor\\DataProcessor.obj.bsl",
+      "Form": {
+        "Browser": {
+          "Form.json": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.json",
+          "Form.form803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.commands803.json",
+          "Form.elements803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.elements803.json",
+          "Form.params803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.params803.json",
+          "Form.props803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Browser\\Form.props803.json"
+        },
+        "Вход": {
+          "Form.json": "core\\base\\Авторизация\\Form\\Вход\\Form.json",
+          "Form.form803.json": "core\\base\\Авторизация\\Form\\Вход\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\Авторизация\\Form\\Вход\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\Авторизация\\Form\\Вход\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\Авторизация\\Form\\Вход\\Form.props803.json",
+          "Form.params803.json": "core\\base\\Авторизация\\Form\\Вход\\Form.params803.json",
+          "Form.elements803.json": "core\\base\\Авторизация\\Form\\Вход\\Form.elements803.json"
+        },
+        "ЗагрузкаДокументов": {
+          "Form.json": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов\\Form.json",
+          "Form.form803.json": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов\\Form.commands803.json",
+          "Form.elements803.json": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов\\Form.elements803.json",
+          "Form.props803.json": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов\\Form.props803.json"
+        },
+        "Настройки": {
+          "Form.json": "core\\base\\Настройки\\Form\\Настройки\\Form.json",
+          "Form.form803.json": "core\\base\\Настройки\\Form\\Настройки\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\Настройки\\Form\\Настройки\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\Настройки\\Form\\Настройки\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\Настройки\\Form\\Настройки\\Form.props803.json",
+          "Form.elements803.json": "core\\base\\Настройки\\Form\\Настройки\\Form.elements803.json"
+        },
+        "ПросмотрДокументаСБИС": {
+          "Form.json": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.json",
+          "Form.form803.json": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.commands803.json",
+          "Form.elements803.json": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.elements803.json",
+          "Form.params803.json": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.params803.json",
+          "Form.props803.json": "core\\base\\ЭДО\\Form\\ПросмотрДокументаСБИС\\Form.props803.json"
+        },
+        "Задачи": {
+          "Form.json": "core\\base\\ЭДО\\Form\\Задачи\\Form.json",
+          "Form.form803.json": "core\\base\\ЭДО\\Form\\Задачи\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ЭДО\\Form\\Задачи\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\ЭДО\\Form\\Задачи\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\ЭДО\\Form\\Задачи\\Form.props803.json",
+          "Form.elements803.json": "core\\base\\ЭДО\\Form\\Задачи\\Form.elements803.json"
+        },
+        "ВыполнитьДействие": {
+          "Form.json": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.json",
+          "Form.form803.json": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.commands803.json",
+          "Form.params803.json": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.params803.json",
+          "Form.props803.json": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.props803.json",
+          "Form.elements803.json": "core\\base\\ЭДО\\Form\\ВыполнитьДействие\\Form.elements803.json"
+        },
+		"РоботСписок": {
+          "Form.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок\\Form.json",
+          "Form.form803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок\\Form.props803.json",
+          "Form.elements803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок\\Form.elements803.json"
+        },
+		"РоботОперация": {
+          "Form.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация\\Form.json",
+          "Form.form803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация\\Form.props803.json",
+          "Form.elements803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация\\Form.elements803.json"
+        },
+		"РоботВыборАлгоритма": {
+          "Form.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма\\Form.json",
+          "Form.form803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма\\Form.props803.json",
+		  "Form.elements803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма\\Form.elements803.json"
+         },
+		"РоботПарамФильтрОбъектовСинх": {
+          "Form.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх\\Form.json",
+          "Form.form803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх\\Form.commands803.json",
+          "Form.props803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх\\Form.props803.json",
+		  "Form.elements803.json": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх\\Form.elements803.json"
+        },
+		"ДлительнаяОперация": {
+          "Form.json": "core\\base\\ДлительныеОперации\\Form\\ДлительнаяОперация\\Form.json",
+          "Form.form803.json": "core\\base\\ДлительныеОперации\\Form\\ДлительнаяОперация\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ДлительныеОперации\\Form\\ДлительнаяОперация\\Form.obj.bsl",
+          "Form.params803.json": "core\\base\\ДлительныеОперации\\Form\\ДлительнаяОперация\\Form.params803.json",
+          "Form.props803.json": "core\\base\\ДлительныеОперации\\Form\\ДлительнаяОперация\\Form.props803.json",
+          "Form.elements803.json": "core\\base\\ДлительныеОперации\\Form\\ДлительнаяОперация\\Form.elements803.json"
+        },
+		"Фильтр": {
+          "Form.json": "core\\base\\ГлавноеОкно\\Form\\Фильтр\\Form.json",
+          "Form.form803.json": "core\\base\\ГлавноеОкно\\Form\\Фильтр\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ГлавноеОкно\\Form\\Фильтр\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\ГлавноеОкно\\Form\\Фильтр\\Form.commands803.json",
+          "Form.elements803.json": "core\\base\\ГлавноеОкно\\Form\\Фильтр\\Form.elements803.json",
+          "Form.props803.json": "core\\base\\ГлавноеОкно\\Form\\Фильтр\\Form.props803.json"
+		},
+		"ДиалогВыбораИзСписка": {
+          "Form.json": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.json",
+          "Form.form803.json": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.commands803.json",
+          "Form.elements803.json": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.elements803.json",
+          "Form.params803.json": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.params803.json",
+          "Form.props803.json": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка\\Form.props803.json"
+		},
+		"Blockly": {
+          "Form.json": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.json",
+          "Form.form803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.form803.json",
+          "Form.obj.bsl": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.obj.bsl",
+          "Form.commands803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.commands803.json",
+          "Form.elements803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.elements803.json",
+          "Form.params803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.params803.json",
+          "Form.props803.json": "core\\base\\БазовыеКомпоненты\\Формы\\Blockly\\Form.props803.json"
+        }
+      },
+      "Template": {
+        "WebInWeb.html": "core\\base\\БазовыеКомпоненты\\Макеты\\WebInWeb.html",
+        "WebInWeb.json": "core\\base\\БазовыеКомпоненты\\Макеты\\WebInWeb.json",
+		"ИсторияОбмена.json": "core\\base\\АвтоматическиеОперации\\Template\\ИсторияОбмена.json",
+        "ИсторияОбмена.mxl": "core\\base\\АвтоматическиеОперации\\Template\\ИсторияОбмена.mxl"
+      }
+    }
+  }
+}
