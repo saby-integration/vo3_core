@@ -1,0 +1,46 @@
+{
+  "CommonPicture": {
+	"Ошибка32": {
+		"*": "base\\CommonPicture\\Ошибка32"
+	 },
+	"Успешно32": {
+		"*": "base\\CommonPicture\\Успешно32"
+	 },
+	"КоллекцияСкрепка": {
+		"*": "base\\CommonPicture\\КоллекцияСкрепка"
+	 },
+	"ДлительнаяОперация48": {
+		"*": "base\\CommonPicture\\ДлительнаяОперация48"
+	 },
+	"Состояния": {
+		"*": "base\\CommonPicture\\Состояния"
+	 },
+	"Отступ24х24": {
+		"*": "base\\CommonPicture\\Отступ24х24"
+	 },
+	"Bird": {
+		"*": "base\\CommonPicture\\Bird"
+	},
+	"SignBlue": {
+		"*": "base\\CommonPicture\\SignBlue"
+	 },
+	"SignOrange": {
+		"*": "base\\CommonPicture\\SignOrange"
+	 },
+	"Глобус32": {
+		"*": "base\\CommonPicture\\Глобус32"
+	 },
+	"ТребуетсяКомментарий": {
+		"*": "base\\CommonPicture\\ТребуетсяКомментарий"
+	 },
+	"ТребуетсяИсполнитель": {
+		"*": "base\\CommonPicture\\ТребуетсяИсполнитель"
+	 },
+	"ТребуетсяКомментарийИИсполнителя": {
+		"*": "base\\CommonPicture\\ТребуетсяКомментарийИИсполнителя"
+	 },
+	"Отступ": {
+		"*": "base\\CommonPicture\\Отступ"
+	 }
+  }
+}
