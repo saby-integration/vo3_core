@@ -1,0 +1,92 @@
+{
+    "DataProcessor": {
+        "SABY": {
+            "DataProcessor.id.json": "src\\DataProcessor\\SABY\\DataProcessor.id.json",
+            "*": "core\\base\\БазовыеКомпоненты\\DataProcessor",
+            "Form": {
+                "BlocklyExecutor": {
+                    "*": 	"core\\base\\БазовыеКомпоненты\\Form\\BlocklyExecutor",
+                    "Form.id.json": 	"src\\DataProcessor\\SABY\\Form\\BlocklyExecutor\\Form.id.json"
+                },
+                "Browser": {
+                    "*": "core\\base\\БазовыеКомпоненты\\Form\\Browser",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\Browser\\Form.id.json"
+                },
+                "Transport": {
+                    "*": 	"core\\base\\Транспорт\\Form\\Transport",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\Transport\\Form.id.json"
+                },
+                "Вход": {
+                    "*": "core\\base\\Авторизация\\Form\\Вход",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\Вход\\Form.id.json"
+                },
+                "ВыполнитьДействие": {
+                    "*": "core\\base\\ЭДО\\Form\\ВыполнитьДействие",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\ВыполнитьДействие\\Form.id.json"
+                },
+                "ДиалогВыбораИзСписка": {
+                    "*": "core\\base\\ГлавноеОкно\\Form\\ДиалогВыбораИзСписка",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\ДиалогВыбораИзСписка\\Form.id.json"
+                },
+                "ЗагрузкаДокументов": {
+                    "*": "core\\base\\ЭДО\\Form\\ЗагрузкаДокументов",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\ЗагрузкаДокументов\\Form.id.json"
+                },
+                "Задачи": {
+                    "*": "core\\base\\ЭДО\\Form\\Задачи",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\Задачи\\Form.id.json"
+                },
+                "Настройки": {
+                    "*": "core\\base\\Настройки\\Form\\Настройки",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\Настройки\\Form.id.json"
+                },
+                "РоботВыборАлгоритма": {
+                    "*": "core\\base\\АвтоматическиеОперации\\Form\\РоботВыборАлгоритма",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\РоботВыборАлгоритма\\Form.id.json"
+                },
+                "РоботОперация": {
+                    "*": "core\\base\\АвтоматическиеОперации\\Form\\РоботОперация",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\РоботОперация\\Form.id.json"
+                },
+                "РоботПарамФильтрОбъектовСинх": {
+                    "*": "core\\base\\АвтоматическиеОперации\\Form\\РоботПарамФильтрОбъектовСинх",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\РоботПарамФильтрОбъектовСинх\\Form.id.json"
+                },
+                "РоботСписок": {
+                    "*": "core\\base\\АвтоматическиеОперации\\Form\\РоботСписок",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\РоботСписок\\Form.id.json"
+                },
+                "Фильтр": {
+                    "*": "core\\base\\ГлавноеОкно\\Form\\Фильтр",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\Фильтр\\Form.id.json"
+                },
+                "ПросмотрДокумента": {
+                    "*": "core\\base\\ПросмотрДокумента\\Form\\ПросмотрДокумента",
+                    "Form.id.json": "src\\DataProcessor\\SABY\\Form\\ПросмотрДокумента\\Form.id.json"
+                },
+				"ВыборИнтеграции": {
+					"*": "core\\base\\БазовыеКомпоненты\\Form\\ВыборИнтеграции",
+					"Form.id.json": "src\\DataProcessor\\SABY\\Form\\ВыборИнтеграции\\Form.id.json"
+				},
+				"ВводПароля": {
+					"*": "core\\base\\БазовыеКомпоненты\\Form\\ВводПароля",
+					"Form.id.json": "src\\DataProcessor\\SABY\\Form\\ВводПароля\\Form.id.json"
+				}
+            },
+            "Template": {
+                "WebInWeb": {
+                    "*": "core\\base\\БазовыеКомпоненты\\Template\\WebInWeb",
+                    "Template.id.json": "src\\DataProcessor\\SABY\\Template\\WebInWeb\\Template.id.json"
+                },
+                "ИсторияОбмена": {
+                    "*": "core\\base\\АвтоматическиеОперации\\Template\\ИсторияОбмена",
+                    "Template.id.json": "src\\DataProcessor\\SABY\\Template\\ИсторияОбмена\\Template.id.json"
+                },
+                "Демо": {
+                    "*": "core\\base\\БазовыеКомпоненты\\Template\\Демо",
+                    "Template.id.json": "src\\DataProcessor\\SABY\\Template\\Демо\\Template.id.json"
+                }
+            }
+        }
+    }
+}
