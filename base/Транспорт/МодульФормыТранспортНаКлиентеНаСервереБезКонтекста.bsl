@@ -1,0 +1,13 @@
+
+#Область include_core_base_Helpers_ExtException_API_inner
+#КонецОбласти
+
+#Область include_core_base_Классы_ОбъектSABY_ОбъектSABY
+#КонецОбласти
+
+#Область include_core_base_Helpers_КопияОбъекта
+#КонецОбласти
+
+#Область include_core_base_Helpers_JSON802_ТелоПарсера
+#КонецОбласти
+
