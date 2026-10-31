@@ -1,0 +1,7 @@
+{
+  "CommonPicture": {
+	"Скрепка": {
+		"*": "base\\CommonPicture\\Скрепка"
+	 }
+  }
+}
